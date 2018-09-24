@@ -22,4 +22,8 @@ public abstract class Piece {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public boolean isFirstMove() {
+		return true;
+	}
 }
