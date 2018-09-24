@@ -9,6 +9,8 @@ public abstract class Tile { //Cannot instantiate this Class
 	
 	private static final Map<Integer, EmptyTile> EMPTY_TILES_CACHE = createAllPossibleEmptyTiles();
 	
+	
+	//Create a hashmap to intialize all tiles to empty pieces
 	private static Map<Integer, EmptyTile> createAllPossibleEmptyTiles(){
 		
 		final Map<Integer, EmptyTile> emptyTileMap = new HashMap<>();
