@@ -21,7 +21,7 @@ public abstract class Move {
 	}
 	
 	public static final class StaticMove extends Move{
-		StaticMove(final Board board,
+		public StaticMove(final Board board,
 				   final Piece movePiece,
 				   final int destCoordinate) {
 			super(board, movePiece,destCoordinate);
@@ -31,7 +31,7 @@ public abstract class Move {
 	public static final class AttackMove extends Move{
 		final Piece attackedPiece;
 		
-		AttackMove(final Board board,
+		public AttackMove(final Board board,
 				   final Piece movePiece,
 				   final int destCoordinate,
 				   final Piece attackedPiece) {

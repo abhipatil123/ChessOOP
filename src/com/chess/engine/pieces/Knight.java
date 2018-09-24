@@ -39,13 +39,13 @@ public class Knight extends Piece {
 			final int candidateDestCoordinate = this.piecePosition + currentCandidateOffset;
 			if(BoardUtils.isValidCoordinate(candidateDestCoordinate)){
 				final Tile candidateDestinationTile = board.getTile(candidateDestCoordinate);
-				if(!candidateDestinationTile.isTileOccupied()) {
-					legalMoves.add(new Move());
+				if(!candidateDestinationTile.isTileOccupied()) { //isTileOccupied belongs to EmptyTile or OccupiedTile?
+					legalMoves.add(new Move.StaticMove(board, this, candidateDestCoordinate));
 				}else {
 					final Piece pieceAtDestination = candidateDestinationTile.getPiece();
 					final Alliance pieceAlliance = pieceAtDestination.getPieceAlliance();
 					if(this.pieceAlliance != pieceAlliance) {
-						legalMoves.add(new Move());
+						legalMoves.add(new Move.AttackMove(board, this, candidateDestCoordinate, pieceAtDestination));
 					}
 				}
 			}
