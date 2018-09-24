@@ -17,4 +17,9 @@ public abstract class Piece {
 	}
 	
 	public abstract Collection<Move> calculateLegalMoves(final Board board);
+
+	public Alliance getPieceAlliance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

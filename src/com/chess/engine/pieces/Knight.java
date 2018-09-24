@@ -29,6 +29,7 @@ public class Knight extends Piece {
 
 		final List<Move> legalMoves = new ArrayList<>();
 		for(final int currentCandidateOffset : CANDIDATE_MOVE_COORDINATES) {
+			//Consider Edge case for Knight
 			if(isFirstColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                isSecondColumnExclusion(this.piecePosition, currentCandidateOffset) ||
                isSeventhColumnExclusion(this.piecePosition, currentCandidateOffset) ||
