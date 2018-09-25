@@ -8,7 +8,7 @@ import com.chess.engine.Alliance;
 import com.chess.engine.board.Board;
 import com.chess.engine.board.BoardUtils;
 import com.chess.engine.board.Move;
-import com.chess.engine.board.Move.StaticMove;
+import com.google.common.collect.ImmutableList;
 
 public class Pawn extends Piece{
 	
@@ -42,9 +42,28 @@ public class Pawn extends Piece{
                     board.getTile(behindCandidateDestinationCoordinate) == null) {
                     legalMoves.add(new Move.StaticMove(board, this, candidateCordinateDestination));
                 }
+			//pawn Attack conditions
+			}else if(currentCoordinateOffset == 9 &&
+					(BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()) ||
+					(!BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())){
+						if(board.getTile(candidateCordinateDestination).isTileOccupied()) {
+							final Piece pieceOnCandidate = board.getTile(candidateCordinateDestination).getPiece();
+							if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()){
+								legalMoves.add(new Move.AttackMove(board, this, candidateCordinateDestination, pieceOnCandidate));
+					}
+				}
+			}else if(currentCoordinateOffset == 7 &&
+					(BoardUtils.EIGHTH_COLUMN[this.piecePosition] && this.pieceAlliance.isWhite()) ||
+					(!BoardUtils.FIRST_COLUMN[this.piecePosition] && this.pieceAlliance.isBlack())){
+						if(board.getTile(candidateCordinateDestination).isTileOccupied()) {
+							final Piece pieceOnCandidate = board.getTile(candidateCordinateDestination).getPiece();
+							if(this.pieceAlliance != pieceOnCandidate.getPieceAlliance()){
+								legalMoves.add(new Move.AttackMove(board, this, candidateCordinateDestination, pieceOnCandidate));
+					}
+				}
 			}
 		}
-		return legalMoves;
+		return ImmutableList.copyOf(legalMoves);
 	}
 	
 }
